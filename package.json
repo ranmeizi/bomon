@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "P•A•I•M•O•N",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev:react": "pnpm -F @bomon/react-example start",
+    "build:react": "pnpm -F @bomon/react-example build",
+    "build:runner": "pnpm -F @bomon/webpack-runner build"
   },
   "keywords": [],
   "author": "boboan",

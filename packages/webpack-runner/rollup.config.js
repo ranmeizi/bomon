@@ -6,9 +6,11 @@ const config = [
   {
     input: "src/index.ts",
     plugins: plugin,
+    bundleConfigAsCjs: true,
     output: [
       {
-        file: "dist/index.js"
+        file: "dist/index.js",
+        format:'cjs'
       }
     ]
   }
