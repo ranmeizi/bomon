@@ -4,6 +4,8 @@ import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin'
 import webpack from 'webpack'
 import path from 'path'
 
+const PNPM_LINKED_WORKSPACE='node_modules/@bomon/webpack-runner/node_modules'
+
 export default function (config: Config) {
     /**
      * @description entry
@@ -40,6 +42,12 @@ export default function (config: Config) {
         .add('.ts')
         .add('.js')
     config.resolve.alias.set('@', path.resolve(process.cwd(), "src/"))
+
+    // pnpm
+    config.resolve.modules.add('node_modules')
+    config.resolve.modules.add(PNPM_LINKED_WORKSPACE)
+    config.resolveLoader.modules.add('node_modules')
+    config.resolveLoader.modules.add(PNPM_LINKED_WORKSPACE)
 
     /**
      * @description plugin

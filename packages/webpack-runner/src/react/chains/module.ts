@@ -12,5 +12,9 @@ export default function (config: Config) {
                 "@babel/preset-react",
                 "@babel/preset-typescript"
             ]
-        })
+        }).end()
+        .rule('css')
+        .test(/.css/)
+        .use('style')
+        .loader('style-loader')
 }
