@@ -4,3 +4,4 @@ export interface Options {
     type: 'react',
     chainWebpack?: (config: Config) => void
 }
+

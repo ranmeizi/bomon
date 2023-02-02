@@ -1,7 +1,10 @@
 import typescript from "rollup-plugin-typescript2";
 import commonjs from "@rollup/plugin-commonjs";
 
-const plugin = [typescript(), commonjs()];
+const plugin = [
+  typescript(),
+  commonjs()
+];
 const config = [
   {
     input: "src/index.ts",
@@ -10,7 +13,7 @@ const config = [
     output: [
       {
         file: "dist/index.js",
-        format:'cjs'
+        format: 'cjs'
       }
     ]
   }

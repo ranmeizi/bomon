@@ -33,10 +33,15 @@ export default function (config: Config) {
     // image
     config.module.rule('image')
         .test(/\.(png|svg|jpg|jpeg|gif|webp)$/i)
-        .set('type', 'assets/resource')
+        .use('url-loader')
+        .loader('url-loader')
+        .options({
+            limig: 8192
+        })
 
     // fomts
     config.module.rule('fonts')
         .test(/\.(woff|woff2|eot|ttf|otf)$/i)
-        .set('type', 'assets/resource')
+        .use('url-loader')
+        .loader('url-loader')
 }

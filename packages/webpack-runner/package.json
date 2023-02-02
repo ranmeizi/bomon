@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "type": "commonjs",
   "scripts": {
-    "build": "rollup -c --bundleConfigAsCjs"
+    "build": "rollup -c --bundleConfigAsCjs && cp wr.env.d.ts ./dist/wr.env.d.ts"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +24,7 @@
     "postcss": "^8.4.21",
     "postcss-loader": "^7.0.2",
     "style-loader": "^3.3.1",
+    "url-loader": "^4.1.1",
     "webpack": "^5.75.0",
     "webpack-chain": "^6.5.1",
     "webpack-dev-server": "^4.11.1"
