@@ -8,7 +8,9 @@ importers:
   packages/dev-publish:
     specifiers:
       '@rollup/plugin-commonjs': ^24.0.1
+      '@types/archiver': ^5.3.1
       '@types/node': ^18.11.18
+      '@types/ssh2': ^1.11.7
       archiver: ^5.3.1
       rollup: ^3.12.0
       rollup-plugin-typescript2: ^0.34.1
@@ -22,7 +24,9 @@ importers:
       ssh2: 1.11.0
     devDependencies:
       '@rollup/plugin-commonjs': 24.0.1_rollup@3.12.0
+      '@types/archiver': 5.3.1
       '@types/node': 18.11.18
+      '@types/ssh2': 1.11.7
       rollup: 3.12.0
       rollup-plugin-typescript2: 0.34.1_tkwgik6422u3whqaozmypsnvni
       tslib: 2.5.0
@@ -1577,6 +1581,12 @@ packages:
       rollup: 3.12.0
     dev: true
 
+  /@types/archiver/5.3.1:
+    resolution: {integrity: sha512-wKYZaSXaDvTZuInAWjCeGG7BEAgTWG2zZW0/f7IYFcoHB2X2d9lkVFnrOlXl3W6NrvO6Ml3FLLu8Uksyymcpnw==}
+    dependencies:
+      '@types/glob': 8.0.1
+    dev: true
+
   /@types/body-parser/1.19.2:
     resolution: {integrity: sha512-ALYone6pm6QmwZoAgeyNksccT9Q4AWZQ6PvfwR37GT6r6FWUPguq6sUmNGSMV2Wr761oQoBxwGGa6DR5o1DC9g==}
     dependencies:
@@ -1644,6 +1654,13 @@ packages:
       '@types/webpack': 4.41.33
     dev: true
 
+  /@types/glob/8.0.1:
+    resolution: {integrity: sha512-8bVUjXZvJacUFkJXHdyZ9iH1Eaj5V7I8c4NdH5sQJsdXkqT4CA5Dhb4yb4VE/3asyx4L9ayZr1NIhTsWHczmMw==}
+    dependencies:
+      '@types/minimatch': 5.1.2
+      '@types/node': 18.11.18
+    dev: true
+
   /@types/html-minifier-terser/6.1.0:
     resolution: {integrity: sha512-oh/6byDPnL1zeNXFrDXFLyZjkr1MsBG667IM792caf1L2UPOOMf65NFzjUH/ltyfwjAGfs1rsX1eftK0jC/KIg==}
     dev: false
@@ -1660,6 +1677,10 @@ packages:
   /@types/mime/3.0.1:
     resolution: {integrity: sha512-Y4XFY5VJAuw0FgAqPNd6NNoV44jbq9Bz2L7Rh/J6jLTiHBSBJa9fxqQIvkIld4GsoDOcCbvzOUAbLPsSKKg+uA==}
     dev: false
+
+  /@types/minimatch/5.1.2:
+    resolution: {integrity: sha512-K0VQKziLUWkVKiRVrx4a40iPaxTUefQmjtkQofBkYRcoaaL/8rhwDWww9qWbrgicNOgnpIsMxyNIUM4+n6dUIA==}
+    dev: true
 
   /@types/node/18.11.18:
     resolution: {integrity: sha512-DHQpWGjyQKSHj3ebjFI/wRKcqQcdR+MoFBygntYOZytCqNfkd2ZC4ARDJ2DQqhjH5p85Nnd3jhUJIXrszFX/JA==}
@@ -1723,6 +1744,12 @@ packages:
 
   /@types/source-list-map/0.1.2:
     resolution: {integrity: sha512-K5K+yml8LTo9bWJI/rECfIPrGgxdpeNbj+d53lwN4QjW1MCwlkhUms+gtdzigTeUyBr09+u8BwOIY3MXvHdcsA==}
+    dev: true
+
+  /@types/ssh2/1.11.7:
+    resolution: {integrity: sha512-MaVSlZOiekRUHnxL2NAmDkcU3+bTwz+ZRktLygjQCnxhLjDzN+XnsG6JUdoocmfxatMiqFo/6eb48uVqFaxBsg==}
+    dependencies:
+      '@types/node': 18.11.18
     dev: true
 
   /@types/tapable/1.0.8:
