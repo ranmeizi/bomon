@@ -15,7 +15,7 @@
 因为里面存在敏感的连接信息 , 所以一定要使用 **gitignore** 忽略提交这个文件
 
 ```js
-// dev-publish.cjs
+// dev-publish.local.cjs
 const main = require('@bomon/dev-publish')
 
 const connection = {
