@@ -8,14 +8,14 @@
 
 ## 运行
 
-### dev-publish.local.ejs
+### dev-publish.local.cjs
 
-在本地创建 dev-publish.local.ejs 文件调用执行函数
+在本地创建 dev-publish.local.cjs 文件调用执行函数
 **非常重要**
 因为里面存在敏感的连接信息 , 所以一定要使用 **gitignore** 忽略提交这个文件
 
 ```js
-// dev-publish.ejs
+// dev-publish.cjs
 const main = require('@bomon/dev-publish')
 
 const connection = {

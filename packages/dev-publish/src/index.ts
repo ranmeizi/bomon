@@ -2,14 +2,12 @@ import { Options } from './type'
 import { Client } from 'ssh2'
 import archiver from 'archiver'
 // @ts-ignore
-import { scp } from 'scp2'
-import { execSync as exec } from 'child_process'
+import client from 'scp2'
 import path from 'path'
 import fs from 'fs'
 
-const projectName = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../package.json')).toString()).name
 const now = (new Date()).toLocaleString().replace(/[\/| |:]/g, '')
-const fileName = `${projectName}.${now}`
+const fileName = `temp.${now}`
 
 export default async function main(options: Options) {
     try {
@@ -33,14 +31,14 @@ export default async function main(options: Options) {
 
 async function runZip(options: Options): Promise<void> {
 
-    const output = fs.createWriteStream(path.resolve(process.cwd() + `${fileName}.zip`))
+    const output = fs.createWriteStream(path.resolve(process.cwd(), `${fileName}.zip`))
 
     const archive = archiver('zip');
 
     archive.pipe(output);
 
     // 添加文件
-    archive.directory(`${options.folder}/`, options.rename || options.folder)
+    archive.directory(path.resolve(process.cwd(), options.folder), `${options.rename || options.folder}`)
     archive.finalize();
 
     return new Promise((resolve, reject) => {
@@ -58,14 +56,15 @@ async function runZip(options: Options): Promise<void> {
 
 async function runScp(options: Options): Promise<void> {
     return new Promise((resolve, reject) => {
-        scp(process.cwd() + `/${fileName}.zip`, {
+        client.scp(path.resolve(process.cwd(), `${fileName}.zip`), {
             host: options.connection.host,
+            port: options.connection.port,
             username: options.connection.username,
             password: options.connection.password,
             path: options.connection.path
         }, function (err: any) {
             // 删除文件
-            fs.unlinkSync(__dirname + `/${fileName}.zip`)
+            fs.unlinkSync(path.resolve(process.cwd(), `${fileName}.zip`))
             if (err) {
                 reject(err)
             } else {
@@ -101,14 +100,15 @@ function runSSH(options: Options) {
     })
 }
 
-function pExec(conn: any): any {
-    return (text: any) => new Promise((resolve, reject) => {
+function pExec(conn: any) {
+    return (text: any): Promise<void> => new Promise((resolve, reject) => {
         conn.exec(text, (err: any, stream: any) => {
             if (err) {
                 reject(err)
             }
             stream.on('close', (code: any, signal: any) => {
                 console.log('Stream :: close :: code: ' + code + ', signal: ' + signal);
+                resolve()
             }).on('data', (data: any) => {
                 console.log('STDOUT: ' + data);
             }).stderr.on('data', (data: any) => {

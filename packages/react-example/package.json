@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "start": "cross-env NODE_ENV=development node runner.cjs",
-    "build": "cross-env NODE_ENV=production node runner.cjs"
+    "build": "cross-env NODE_ENV=production node runner.cjs",
+    "publish": "node dev-publish.local.cjs"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@bomon/dev-publish": "workspace:^1.0.0",
     "@bomon/webpack-runner": "workspace:^1.0.0",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
