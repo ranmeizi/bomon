@@ -4,24 +4,30 @@ import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin'
 import webpack from 'webpack'
 import path from 'path'
 
-const PNPM_LINKED_WORKSPACE='node_modules/@bomon/webpack-runner/node_modules'
+const PNPM_LINKED_WORKSPACE = 'node_modules/@bomon/webpack-runner/node_modules'
 
 export default function (config: Config) {
+
+    // when dev
+    config.when(process.env.NODE_ENV === 'development', config => {
+
+        config.merge({ devtool: 'cheap-module-source-map' });
+
+        config.entry('index')
+            .add('webpack/hot/dev-server.js')
+            .add('webpack-dev-server/client/index.js?hot=true&live-reload=true')
+
+        config.watch(true)
+
+        config.plugin('hmr').use(webpack.HotModuleReplacementPlugin).end()
+    })
+
     /**
      * @description entry
      * [https://webpack.js.org/configuration/entry-context/#entry]
      */
     config.entry('index')
         .add(path.resolve(process.cwd(), 'src/index.tsx'))
-
-    // hmr code
-    config.when(process.env.NODE_ENV === 'development', config => {
-        config.entry('index')
-            .add('webpack/hot/dev-server.js')
-            .add('webpack-dev-server/client/index.js?hot=true&live-reload=true')
-
-        config.watch(true)
-    })
 
     /**
      * @description output
@@ -55,5 +61,5 @@ export default function (config: Config) {
      */
     config.plugin('html').use(HtmlWebpackPlugin, [{ template: path.resolve(process.cwd(), 'index.html') }]).end()
         .plugin('friendly-error').use(FriendlyErrorsPlugin).end()
-        .plugin('hmr').use(webpack.HotModuleReplacementPlugin).end()
+
 }

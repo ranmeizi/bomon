@@ -1,10 +1,13 @@
 import Config from 'webpack-chain'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin'
 
 export default function (config: Config) {
     // tsx
     config.module
         .rule('react')
-        .test(/\.tsx?$/i)
+        .exclude.add(/node_modules/).end()
+        .test(/\.tsx?$/)
         .use('babel-loader')
         .loader('babel-loader')
         .options({
@@ -17,22 +20,31 @@ export default function (config: Config) {
 
     // css
     config.module.rule('css')
-        .test(/.css$/i)
-        .use('style-loader').loader('style-loader').end()
+        .test(/.css$/)
+        .use('mini-css-extract-plugin-loader').loader(MiniCssExtractPlugin.loader).end()
         .use('css-loader').loader('css-loader').end()
         .use('postcss-loader').loader('postcss-loader')
 
     // less
     config.module.rule('less')
-        .test(/.less$/i)
-        .use('style-loader').loader('style-loader').end()
+        .test(/.less$/)
+        .use('mini-css-extract-plugin-loader').loader(MiniCssExtractPlugin.loader).end()
         .use('css-loader').loader('css-loader').end()
         .use('postcss-loader').loader('postcss-loader').end()
         .use('less-loader').loader('less-loader')
 
+
+    /**
+     * @description css-minimizer-webpack-plugin
+     * [https://webpack.docschina.org/plugins/css-minimizer-webpack-plugin/]
+     */
+    config.plugin('css-minimizer-webpack-plugin').use(MiniCssExtractPlugin)
+    config.optimization.minimizer('css-minimizer-webpack-plugin').use(CssMinimizerPlugin)
+
+
     // image
     config.module.rule('image')
-        .test(/\.(png|svg|jpg|jpeg|gif|webp)$/i)
+        .test(/\.(png|svg|jpg|jpeg|gif|webp)$/)
         .use('url-loader')
         .loader('url-loader')
         .options({
@@ -41,7 +53,7 @@ export default function (config: Config) {
 
     // fomts
     config.module.rule('fonts')
-        .test(/\.(woff|woff2|eot|ttf|otf)$/i)
+        .test(/\.(woff|woff2|eot|ttf|otf)$/)
         .use('url-loader')
         .loader('url-loader')
 }

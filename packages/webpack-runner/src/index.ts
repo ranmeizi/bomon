@@ -19,7 +19,6 @@ function createConfig(options: Options) {
 
 export default function runner(options: Options) {
     const config = createConfig(options)
-    console.dir(config, { depth: 10 })
     // run
     const compiler = webpack(config, (e, stats) => {
         stats && console.error(stats?.toString())
