@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev:react": "pnpm -F @bomon/react-example start",
-    "build:react": "pnpm -F @bomon/react-example build",
+    "dev:react": "pnpm -F @bomon/test-page start",
+    "build:react": "pnpm -F @bomon/test-page build",
     "build:runner": "pnpm -F @bomon/webpack-runner build"
   },
   "keywords": [],

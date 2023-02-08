@@ -10,7 +10,7 @@
 
 ```javascript
 // runner.js
-const runner = require('@bomon/webpack-runner')
+const runner = require('@bomon/webpack-runner').runner
 
 runner({
     type: 'react',

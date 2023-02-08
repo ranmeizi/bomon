@@ -17,7 +17,7 @@ function createConfig(options: Options) {
     return config.toConfig()
 }
 
-export default function runner(options: Options) {
+export function runner(options: Options) {
     const config = createConfig(options)
     // run
     const compiler = webpack(config, (e, stats) => {
