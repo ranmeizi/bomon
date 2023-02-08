@@ -1,0 +1,1 @@
+export { AliveScope } from 'react-activation'
