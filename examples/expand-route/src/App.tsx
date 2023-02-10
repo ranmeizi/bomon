@@ -1,22 +1,14 @@
-import React from 'react'
-import { useLocation, Routes, Route, Link } from "react-router-dom";
+import React, { useEffect } from 'react'
+import { RouterProvider, createBrowserRouter, Link } from "react-router-dom";
+import routes from './routes'
 
-export default function () {
-    let location = useLocation();
+const router = createBrowserRouter(routes)
+
+export default function (props: any) {
     return <div>
-        <Link to='/a'>A</Link>
-        <Link to='/b'>B</Link>
-        <Routes location={location}>
-            <Route path='/a' element={<A />} />
-            <Route path='/b' element={<B />} />
-        </Routes>
+        {/* <Link to='/'>home</Link>
+        <Link to='/f/a'>A</Link>
+        <Link to='/f/b'>B</Link> */}
+        <RouterProvider router={router} />
     </div>
-}
-
-function A() {
-    return <div>A</div>
-}
-
-function B() {
-    return <div>B</div>
 }

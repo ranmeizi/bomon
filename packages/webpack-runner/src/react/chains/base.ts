@@ -34,6 +34,7 @@ export default function (config: Config) {
      * [https://webpack.js.org/configuration/output/]
      */
     config.output
+        .publicPath('/')
         .set('clean', true)
         .filename('[name].[fullhash].js')
         .chunkFilename('[name].[chunkhash].chunk.js')
@@ -50,10 +51,15 @@ export default function (config: Config) {
     config.resolve.alias.set('@', path.resolve(process.cwd(), "src/"))
 
     // pnpm
-    config.resolve.modules.add('node_modules')
-    config.resolve.modules.add(PNPM_LINKED_WORKSPACE)
-    config.resolveLoader.modules.add('node_modules')
-    config.resolveLoader.modules.add(PNPM_LINKED_WORKSPACE)
+    config.resolve.modules
+        .add('node_modules')
+        .add(path.resolve(process.cwd(), "node_modules"))
+        .add(PNPM_LINKED_WORKSPACE)
+
+    config.resolveLoader.modules
+        .add('node_modules')
+        .add(path.resolve(process.cwd(), "node_modules"))
+        .add(PNPM_LINKED_WORKSPACE)
 
     /**
      * @description plugin

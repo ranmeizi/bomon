@@ -9,6 +9,7 @@ export default function (options: Options, compiler: any) {
             static: {
                 directory: path.join(process.cwd(), 'public'),
             },
+            historyApiFallback: true,
             compress: true,
             port: 8080,
             open: true
