@@ -1,40 +1,112 @@
-import React, { Children } from "react"
-import { RouteObject } from 'react-router-dom'
-import TransitionView from "@/TransitionView"
-import LinkHeadView from "@/LinkHeadView"
-import A from "@/views/ViewA"
-import B from "@/views/ViewB"
-
-async function withRConfig() {
-    return {
-        isTransition: true,
-        isCache: true
-    }
-}
+import React, { Children } from "react";
+import { Outlet, RouteObject, Link, useNavigate } from "react-router-dom";
+import TransitionView from "@/TransitionView";
+import A from "@/views/ViewA";
+import B from "@/views/ViewB";
+import ID from "@/views/ViewId";
+import { ActionKeepAlive } from "@bomon/expand-router";
+import Nav from "@/components/Nav";
 
 const routes: RouteObject[] = [
-    {
-        path: "/",
-        element: <TransitionView />,
+  {
+    path: "/",
+    element: <TransitionView />,
+    children: [
+      {
+        path: "/f",
+        element: <Test />,
         children: [
-            {
-                path: '/f',
-                element: <LinkHeadView />,
-                children: [
-                    {
-                        path: "/f/a",
-                        index: true,
-                        element: <A />
-                    },
-                    {
-                        path: "/f/b",
-                        element: <B />
-                    },
-                ]
-            }
-
+          {
+            path: "/f/id/:id",
+            element: (
+              <ActionKeepAlive>
+                <ID />
+              </ActionKeepAlive>
+            ),
+          },
+          {
+            path: "/f/a",
+            index: true,
+            element: (
+              <ActionKeepAlive>
+                <A />
+              </ActionKeepAlive>
+            ),
+          },
+          {
+            path: "/f/b",
+            element: (
+              <ActionKeepAlive>
+                <B />
+              </ActionKeepAlive>
+            ),
+          },
         ],
-    },
-]
+      },
+      {
+        path: "/s",
+        children: [
+          {
+            path: "/s/a",
+            element: (
+              <ActionKeepAlive>
+                <SubA />
+              </ActionKeepAlive>
+            ),
+          },
+        ],
+      },
+    ],
+  },
+];
 
-export default routes
+function SubA() {
+  const navigate = useNavigate();
+  return (
+    <div>
+      <button onClick={() => navigate(-1)}>back</button>
+      subA
+    </div>
+  );
+}
+
+// const routes: RouteObject[] = [
+//     {
+//         path: "/",
+//         element: <TransitionView />,
+//         children: [
+//             {
+//                 path: "/f/id/:id",
+//                 index: true,
+//                 element: <ActionKeepAlive>
+//                     <ID />
+//                 </ActionKeepAlive>
+//             },
+//             {
+//                 path: "/f/a",
+//                 index: true,
+//                 element: <ActionKeepAlive>
+//                     <A />
+//                 </ActionKeepAlive>
+//             },
+//             {
+//                 path: "/f/b",
+//                 element: <ActionKeepAlive>
+//                     <B />
+//                 </ActionKeepAlive>
+//             },
+
+//         ],
+//     },
+// ]
+
+function Test() {
+  return (
+    <div>
+      <Nav></Nav>
+      <Outlet></Outlet>
+    </div>
+  );
+}
+
+export default routes;

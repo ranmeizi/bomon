@@ -10,7 +10,7 @@ importers:
 
   examples/expand-route:
     specifiers:
-      '@bomon/expand-route': workspace:^1.0.0
+      '@bomon/expand-router': workspace:^0.1.0
       '@bomon/webpack-runner': workspace:^1.0.1
       '@types/react': ^18.0.27
       '@types/react-dom': ^18.0.10
@@ -18,7 +18,7 @@ importers:
       react-dom: ^18.2.0
       react-router-dom: ^6.8.1
     dependencies:
-      '@bomon/expand-route': link:../../packages/expand-route
+      '@bomon/expand-router': link:../../packages/expand-router
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-router-dom: 6.8.1_biqbaboplfbrettd7655fr4n2y
@@ -73,7 +73,7 @@ importers:
       tslib: 2.5.0
       typescript: 4.9.4
 
-  packages/expand-route:
+  packages/expand-router:
     specifiers:
       '@bomon/webpack-runner': workspace:^1.0.1
       '@types/react': ^18.0.27

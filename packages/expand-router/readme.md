@@ -15,3 +15,5 @@ TransitionOutlet 在子节点 Outlet 外面包裹了一层 ```react-transition-g
 #### ActionKeepAlive
 
 在 ```react-activation``` 的 KeepAlive 组件的基础上，增加了1个功能，当 react-router 的 navigationType 是 PUSH 的时候，手动调用 api 清除缓存
+
+saveScrollPosition 对 dom 的操作会让 csstransition 的过度有些问题, 在使用 KeepAlive 时 我先关闭这个功能了
