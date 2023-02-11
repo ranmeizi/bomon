@@ -1,5 +1,5 @@
 {
-  "name": "@bomon/expand-route",
+  "name": "@bomon/expand-router",
   "version": "0.1.0",
   "description": "",
   "main": "src/index.tsx",

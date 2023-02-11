@@ -9,7 +9,7 @@
     "example:expand-route": "pnpm -F expand-route start",
     "build:test": "pnpm -F test-page build",
     "build:runner": "pnpm -F @bomon/webpack-runner build",
-    "build:route": "pnpm -F @bomon/expand-route build"
+    "build:route": "pnpm -F @bomon/expand-router build"
   },
   "keywords": [],
   "author": "boboan",

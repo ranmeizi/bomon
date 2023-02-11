@@ -1,4 +1,6 @@
-# @bomon/expand-route
+# @bomon/expand-router
+
+基于 react-router-dom 封装一些常用功能
 
 ## data route
 
