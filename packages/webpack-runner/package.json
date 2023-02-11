@@ -1,9 +1,10 @@
 {
   "name": "@bomon/webpack-runner",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/types.d.ts",
+  "files": ["dist/*"],
   "type": "commonjs",
   "scripts": {
     "build": "rollup -c --bundleConfigAsCjs && cp wr.env.d.ts ./dist/wr.env.d.ts"

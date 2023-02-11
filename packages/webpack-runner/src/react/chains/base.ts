@@ -52,14 +52,14 @@ export default function (config: Config) {
 
     // pnpm
     config.resolve.modules
-        .add('node_modules')
         .add(path.resolve(process.cwd(), "node_modules"))
         .add(PNPM_LINKED_WORKSPACE)
+        .add('node_modules')
 
     config.resolveLoader.modules
-        .add('node_modules')
         .add(path.resolve(process.cwd(), "node_modules"))
         .add(PNPM_LINKED_WORKSPACE)
+        .add('node_modules')
 
     /**
      * @description plugin

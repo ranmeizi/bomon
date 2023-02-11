@@ -1,7 +1,6 @@
-import React, { useMemo } from 'react'
-import { Routes, RoutesProps, matchPath, useLocation, useNavigationType, useMatches } from 'react-router-dom'
+import React from 'react'
+import { RoutesProps, RouteObject, useNavigationType } from 'react-router-dom'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
-import { ExRouteProps } from '../type'
 
 const ANIMATION_MAP = {
     REPLACE: 'forward',
@@ -9,13 +8,14 @@ const ANIMATION_MAP = {
     POP: 'back'
 }
 
-export default function (props: RoutesProps) {
-    const { children } = props
+interface TransitionOutletProps extends RoutesProps {
+    transitionIds?: RouteObject['id']
+}
 
-    let location = useLocation();
+export default function TransitionOutlet(props: TransitionOutletProps) {
+    const { children, transitionIds = [] } = props
+
     const NavType = useNavigationType()
-    const routes = useMatches()
-    console.log(routes)
 
     return <TransitionGroup
         className={'transition-group'}

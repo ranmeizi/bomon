@@ -1,10 +1,6 @@
-import { useTransition } from './hooks/useTransition'
-import TransitionRoutes from './components/TransitionRoutes'
-// export { AliveScope } from 'react-activation'
-
-import './style.less'
+import TransitionOutlet from './components/TransitionOutlet'
+export { AliveScope } from 'react-activation'
 
 export {
-    TransitionRoutes,
-    useTransition
+    TransitionOutlet
 }

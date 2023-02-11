@@ -1,10 +1,16 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Outlet, useNavigate } from 'react-router-dom'
 // @ts-ignore
-import { TransitionRoutes } from '@bomon/expand-route'
+import { TransitionOutlet } from '@bomon/expand-route'
 
 export default function () {
-    return <TransitionRoutes>
+    const navigate = useNavigate()
+    useEffect(() => {
+        navigate('/f/a', {
+            replace: true
+        })
+    }, [])
+    return <TransitionOutlet>
         <Outlet />
-    </TransitionRoutes>
+    </TransitionOutlet>
 }

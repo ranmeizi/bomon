@@ -1,10 +1,18 @@
 import React, { Children } from "react"
+import { RouteObject } from 'react-router-dom'
 import TransitionView from "@/TransitionView"
 import LinkHeadView from "@/LinkHeadView"
 import A from "@/views/ViewA"
 import B from "@/views/ViewB"
 
-export default [
+async function withRConfig() {
+    return {
+        isTransition: true,
+        isCache: true
+    }
+}
+
+const routes: RouteObject[] = [
     {
         path: "/",
         element: <TransitionView />,
@@ -15,6 +23,7 @@ export default [
                 children: [
                     {
                         path: "/f/a",
+                        index: true,
                         element: <A />
                     },
                     {
@@ -27,3 +36,5 @@ export default [
         ],
     },
 ]
+
+export default routes
