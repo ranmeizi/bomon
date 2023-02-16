@@ -5,5 +5,5 @@ import routes from './routes'
 const router = createBrowserRouter(routes)
 
 export default function (props: any) {
-    return <RouterProvider router={router}/>
+    return <RouterProvider router={router} />
 }

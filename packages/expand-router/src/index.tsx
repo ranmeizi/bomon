@@ -1,10 +1,16 @@
 import TransitionOutlet from './components/TransitionOutlet'
-import ActionKeepAlive from './components/ActionKeepAlive'
+import KRoute from './components/KRoute'
 import EventLRU from './utils/LRU'
+import TransitionRoute from './components/Transition/Route'
+import TransitionProvider from './components/Transition/Provider'
+import SwitchOutlet from './components/SwitchOutlet'
 export { AliveScope } from 'react-activation'
 
 export {
     TransitionOutlet,
-    ActionKeepAlive,
+    SwitchOutlet,
+    KRoute,
+    TransitionRoute,
+    TransitionProvider,
     EventLRU
 }

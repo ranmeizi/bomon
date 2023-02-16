@@ -1,11 +1,10 @@
 import Nav from "@/components/Nav";
 import React from "react";
 
-export default function B() {
+export default function Nearby() {
   return (
     <div>
-      {/* <Nav></Nav> */}
-      B <input type="text" />
+      Nearby
     </div>
   );
 }

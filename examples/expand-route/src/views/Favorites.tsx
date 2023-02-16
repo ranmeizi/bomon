@@ -1,12 +1,10 @@
 import Nav from "@/components/Nav";
 import React from "react";
 
-export default function A() {
+export default function Favorites() {
   return (
     <div>
-      {/* <Nav /> */}
-      A
-      <input type="text" />
+      Favorites
     </div>
   );
 }

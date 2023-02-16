@@ -3,10 +3,10 @@ import { Outlet, useNavigate } from "react-router-dom";
 // @ts-ignore
 import { TransitionOutlet } from "@bomon/expand-router";
 
-export default function () {
+export default function ({ id }: any) {
   return (
-    <TransitionOutlet>
-       <Outlet key={location.pathname + location.search} />
+    <TransitionOutlet >
+      <Outlet />
     </TransitionOutlet>
   );
 }

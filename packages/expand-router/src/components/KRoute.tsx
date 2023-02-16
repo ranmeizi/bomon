@@ -16,7 +16,7 @@ type ActionKeepAliveProps = React.PropsWithChildren<
   } & KeepAliveProps
 >;
 
-export default function ActionKeepAlive(props: ActionKeepAliveProps) {
+export default function KRoute(props: ActionKeepAliveProps) {
   const location = useLocation();
 
   const {

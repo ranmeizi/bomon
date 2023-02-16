@@ -10,29 +10,21 @@ const ANIMATION_MAP = {
 
 interface TransitionOutletProps extends RoutesProps {
   transitionIds?: RouteObject["id"];
-  id: string
 }
 
 export default function TransitionOutlet(props: TransitionOutletProps) {
-  const { children, transitionIds = [], id } = props;
-  const currentOutlet = useOutlet()
+  const { children, transitionIds = [] } = props;
   const NavType = useNavigationType();
-  const matches = useMatches()
 
-  console.log(NavType, '?')
   return (
     <SwitchTransition>
       <CSSTransition
         classNames={`transition-item ${ANIMATION_MAP[NavType]}`}
         timeout={500}
         unmountOnExit
-        key={location.pathname + location.search}
+        key={location.pathname + location.search + NavType}
       >
-        {(state) => (
-          <div>
-            {currentOutlet}
-          </div>
-        )}
+        {children}
       </CSSTransition>
     </SwitchTransition>
   );
