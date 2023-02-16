@@ -8,7 +8,11 @@
 - dev-publish
 使用 nodejs scp ssh 部署您打包好的 dist 文件夹，方便开发时快速部署应用
 
+- expand-router
+拓展路由，给路由添加 过渡动画/节点缓存 ，使用 react-router 6 + react-transition-group + react-activation
+
 ## todo
 
-- react-component 常用组件
-- common 函数
+- tracking 埋点
+- mui-comp mui 组件
+- ant-comp antd 组件
