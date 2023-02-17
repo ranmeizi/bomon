@@ -22,7 +22,6 @@ export default function TransitionProvider({ children }: React.PropsWithChildren
 
     useEffect(() => {
         function routeViewExitHandler({ id, styles }: any) {
-            console.log('看看', id, idRef.current, styles)
             if (id !== idRef.current) {
                 return
             }
@@ -30,14 +29,21 @@ export default function TransitionProvider({ children }: React.PropsWithChildren
             setStyle(styles)
             setInProp(false)
 
-            const onlyNode = el.current?.children[0]
-
-            if (!onlyNode || !el.current) {
+            if (!el.current) {
                 return
             }
 
+            if (el.current?.children.length > 1) {
+                // 删除其余节点
+                while (el.current.children.length - 1 > 0) {
+                    el.current.children[0].remove()
+                }
+                // 恢复状态
+                el.current.style.transition = 'none'
+                el.current.style.transform = 'translateX(0)'
+            }
+
             el.current.addEventListener('transitionend', function end() {
-                console.log('transitionend')
                 for (let node of el.current!.children) {
                     node.remove()
                 }
@@ -45,6 +51,7 @@ export default function TransitionProvider({ children }: React.PropsWithChildren
                 setInProp(true)
                 el.current?.removeEventListener('transitionend', end)
             })
+
 
         }
         EventTarget.on('transport-in', routeViewExitHandler)
@@ -57,15 +64,18 @@ export default function TransitionProvider({ children }: React.PropsWithChildren
         <Transition in={inProp} timeout={{
             appear: 0,
             enter: 0,
-            exit: 500,
+            exit: 0,
         }}>
-            {state => <div
-                ref={el}
-                id={idRef.current}
-                className='transition-item out-view'
-                style={style?.[state] || {}}
-                data-id={idRef.current}
-            ></div>}
+            {state => {
+                console.log(style?.[state], state)
+                return <div
+                    ref={el}
+                    id={idRef.current}
+                    className='transition-item out-view'
+                    style={style?.[state] || {}}
+                    data-id={idRef.current}
+                ></div>
+            }}
         </Transition>
     </div>
 }

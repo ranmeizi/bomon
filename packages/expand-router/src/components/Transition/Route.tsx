@@ -4,7 +4,7 @@ import { Transition } from "react-transition-group";
 import Transporter from "./Transporter";
 import { merge } from 'lodash'
 import { useLocation, useNavigationType, NavigationType, Location } from "react-router-dom";
-
+import { withMyRouter } from "./Hoc";
 // TransitionRoute 在路由进入时 调用 Transition 动画
 
 interface TransitionRouteProps {
@@ -17,6 +17,7 @@ type WithMyRouter<T> = T & {
     location: Location
 }
 
+@withMyRouter({ useLocationKey: true })
 class TransitionRoute extends React.Component<WithMyRouter<React.PropsWithChildren<TransitionRouteProps>>> {
 
     state = {
@@ -43,29 +44,18 @@ class TransitionRoute extends React.Component<WithMyRouter<React.PropsWithChildr
     render(): React.ReactNode {
         const { inProp, styles } = this.state
         const { navType, children } = this.props
-        return <div>
-            <Transition in={inProp} timeout={{
-                appear: 0,
-                enter: 500,
-                exit: 0,
-            }}>
-                {state => {
-                    return <Transporter _style={styles[navType][state as States]} originStyle={styles[navType]}>
-                        {children}
-                    </Transporter>
-                }}
-            </Transition>
-        </div>
+        return <Transition in={inProp} timeout={{
+            appear: 0,
+            enter: 0,
+            exit: 0,
+        }}>
+            {state => {
+                return <Transporter _style={styles[navType][state as States]} originStyle={styles}>
+                    {children}
+                </Transporter>
+            }}
+        </Transition>
     }
 }
 
-function withMyRouter(Component: React.ComponentType<any>) {
-    return (props: any) => {
-        const navType = useNavigationType()
-        const location = useLocation()
-        console.log(navType)
-        return <Component key={location.pathname + location.search} {...props} navType={navType} location={location} />
-    }
-}
-
-export default withMyRouter(TransitionRoute)
+export default TransitionRoute
