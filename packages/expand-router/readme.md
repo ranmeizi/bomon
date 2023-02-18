@@ -1,6 +1,6 @@
 # @bomon/expand-router
 
-基于 react-router-dom 封装一些常用功能
+基于 react-router-dom 6 封装一些常用功能
 
 这个模块为了封装路由切换的代码，使小项目或是对过渡动画要求不高的项目直接使用，并不适合所有情况
 
@@ -41,6 +41,8 @@ import { KRoute } from '@bomon/expand-router'
 ```
 
 ### Transition 示例
+
+自带了一套 translatX 的x轴动画
 
 先定义 transition 窗口，transition 的 view 都会相对窗口定位
 
@@ -92,3 +94,7 @@ import { TransitionRoute } from '@bomon/expand-router'
     ],
 },
 ```
+
+### 自定义过渡 style
+
+先不支持
