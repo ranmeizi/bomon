@@ -4,6 +4,10 @@
 
 这个模块为了封装路由切换的代码，使小项目或是对过渡动画要求不高的项目直接使用，并不适合所有情况
 
+## install
+
+```npm install @bomon/expand-router```
+
 ## data route
 
 只支持 v6 的 react-router-dom 的 data route [picking-a-router](https://reactrouter.com/en/main/routers/picking-a-router)  
@@ -26,6 +30,7 @@ TransitionRoute 用来实现进场动画，并且会在路由切换组件销毁�
 ### KRoute 示例
 
 ```javascript
+import { KRoute } from '@bomon/expand-router'
 // router config
 {
     path: "/path",
@@ -40,6 +45,7 @@ TransitionRoute 用来实现进场动画，并且会在路由切换组件销毁�
 先定义 transition 窗口，transition 的 view 都会相对窗口定位
 
 ```javascript
+import { TransitionProvider } from '@bomon/expand-router'
 // TabView
 export default function () {
     const outlet = useOutlet()
@@ -57,9 +63,10 @@ export default function () {
 }
 ```
 
-将带有 TransitionProvider 的组件放在正确的节点
+将带有 TransitionProvider 的组件放在正确的节点，在需要过渡的节点外添加 TransitionRoute
 
 ```js
+import { TransitionRoute } from '@bomon/expand-router'
 {
     path: "/t",
     element: <TabView />,
