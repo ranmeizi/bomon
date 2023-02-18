@@ -63,13 +63,4 @@ function SubA() {
     );
 }
 
-function Test() {
-    return (
-        <div>
-            <Nav></Nav>
-            <Outlet></Outlet>
-        </div>
-    );
-}
-
 export default routes;

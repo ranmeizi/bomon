@@ -49,3 +49,5 @@ function useActionControl(name: string, aliveTypes: NavigationType[]) {
     }
   }, [location]);
 }
+
+
