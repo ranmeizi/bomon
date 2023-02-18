@@ -48,7 +48,7 @@ class Transporter extends React.Component<React.PropsWithChildren<Props>> {
         // 触发事件
         EventTarget.emit('transport-in', {
             id: this.nearestId,
-            styles: this.props.originStyle
+            style: this.props.originStyle
         })
     }
 

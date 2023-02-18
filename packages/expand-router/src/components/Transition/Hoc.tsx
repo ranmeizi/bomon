@@ -6,15 +6,17 @@ export function withMyRouter({
 }: {
     useLocationKey?: boolean
 }) {
-    // @ts-ignore
-    return Component => props => {
-        const navType = useNavigationType()
-        const location = useLocation()
+    return function (Component: any): any {
+        return (props: any) => {
+            const navType = useNavigationType()
+            const location = useLocation()
 
-        if (useLocationKey) {
-            props.key = location.pathname + location.search
+            return <Component
+                {...props}
+                {...useLocationKey ? { key: location.pathname + location.search } : {}}
+                navType={navType}
+                location={location}
+            />
         }
-
-        return <Component {...props} navType={navType} location={location} />
     }
 }

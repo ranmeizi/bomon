@@ -1,8 +1,9 @@
-import { PROVIDER_CLASSNAME } from '../../CONSTANTS'
-import React, { useEffect, useRef, useState } from 'react'
-import { Transition } from 'react-transition-group'
+import { PROVIDER_CLASSNAME, TransitionStyles, NavTypes, States } from '../../CONSTANTS'
+import React, { createRef, useEffect, useRef, useState } from 'react'
+import { Transition, TransitionStatus } from 'react-transition-group'
 import { uniqueId } from 'lodash'
 import EventTarget from '../../utils/EventTarget'
+import { withMyRouter } from './Hoc'
 
 // TransitionProvider
 
@@ -14,68 +15,100 @@ const styles: Record<string, React.CSSProperties> = {
     }
 }
 
-export default function TransitionProvider({ children }: React.PropsWithChildren) {
-    const [inProp, setInProp] = useState(true)
-    const idRef = useRef(uniqueId())
-    const el = useRef<HTMLDivElement>(null)
-    const [style, setStyle] = useState<any>({})
+@withMyRouter({})
+class TransitionProvider extends React.Component<any> {
 
-    useEffect(() => {
-        function routeViewExitHandler({ id, styles }: any) {
-            if (id !== idRef.current) {
-                return
-            }
-            // 退场动画
-            setStyle(styles)
-            setInProp(false)
+    el = createRef<HTMLDivElement>()
+    id = uniqueId()
+    running = false
 
-            if (!el.current) {
-                return
-            }
+    state = {
+        in: true,
+        exit: false,
+        appear: false,
+        viewStyle: {},
+    }
 
-            if (el.current?.children.length > 1) {
-                // 删除其余节点
-                while (el.current.children.length - 1 > 0) {
-                    el.current.children[0].remove()
-                }
-                // 恢复状态
-                el.current.style.transition = 'none'
-                el.current.style.transform = 'translateX(0)'
-            }
+    componentDidMount(): void {
+        EventTarget.on('transport-in', this.transportHandler)
+    }
 
-            el.current.addEventListener('transitionend', function end() {
-                for (let node of el.current!.children) {
-                    node.remove()
-                }
+    componentWillUnmount(): void {
+        EventTarget.un('transport-in', this.transportHandler)
+    }
 
-                setInProp(true)
-                el.current?.removeEventListener('transitionend', end)
-            })
-
-
+    transportHandler = ({ id, style }: any) => {
+        if (id !== this.id || !this.el.current) {
+            return
         }
-        EventTarget.on('transport-in', routeViewExitHandler)
-        return () => EventTarget.un('transport-in', routeViewExitHandler)
-    }, [])
+        if (this.running) {
+            console.log('running')
+            // 清除节点
+            while (this.el.current.children.length - 1 > 0) {
+                this.el.current.children[0].remove()
+            }
 
-    return <div style={styles.root} className={PROVIDER_CLASSNAME}>
-        {children}
-        {/* Transiton Dom */}
-        <Transition in={inProp} timeout={{
-            appear: 0,
-            enter: 0,
-            exit: 0,
-        }}>
-            {state => {
-                console.log(style?.[state], state)
-                return <div
-                    ref={el}
-                    id={idRef.current}
-                    className='transition-item out-view'
-                    style={style?.[state] || {}}
-                    data-id={idRef.current}
-                ></div>
-            }}
-        </Transition>
-    </div>
+            // 重置父节点状态
+            this.setState({
+                in: true
+            })
+        }
+
+        this.setState({
+            viewStyle: style
+        }, () => {
+            this.setState({ in: false })
+        })
+
+        this.running = true
+
+        this.el.current.addEventListener('transitionend', this.transitionEndHandler)
+    }
+
+    transitionEndHandler = () => {
+        if (!this.el.current) {
+            return
+        }
+        for (let node of this.el.current.children) {
+            node.remove()
+        }
+
+        this.setState({
+            in: true
+        })
+
+        this.el.current.removeEventListener('transitionend', this.transitionEndHandler)
+    }
+
+    getStyle(state: TransitionStatus): React.CSSProperties {
+        const { navType } = this.props
+        const { viewStyle } = this.state
+        const style = (viewStyle as TransitionStyles)?.[navType as NavTypes]?.[state as States] || {}
+        return {
+            ...style,
+            transition: state === 'exited' ? style.transition : 'none'
+        } || {}
+    }
+
+    render(): React.ReactNode {
+        const { children } = this.props
+        const { in: _in } = this.state
+        return <div style={styles.root} className={PROVIDER_CLASSNAME}>
+            {children}
+            {/* Transiton Dom */}
+            <Transition in={_in} timeout={0}>
+                {state => {
+                    return <div
+                        ref={this.el}
+                        id={this.id}
+                        className='transition-item out-view'
+                        style={this.getStyle(state)}
+                        data-id={this.id}
+                    ></div>
+                }}
+            </Transition>
+        </div>
+    }
 }
+
+export default TransitionProvider

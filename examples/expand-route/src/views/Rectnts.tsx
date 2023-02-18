@@ -1,10 +1,11 @@
 import Nav from "@/components/Nav";
+import Page from "@/components/Page";
 import React from "react";
 
 export default function Rectnts() {
   return (
-    <div>
+    <Page>
       Rectnts
-    </div>
+    </Page>
   );
 }
