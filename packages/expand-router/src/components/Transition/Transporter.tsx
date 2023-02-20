@@ -1,25 +1,15 @@
 import EventTarget from '../../utils/EventTarget';
-import React, { useEffect, useRef } from 'react'
-import { useLocation } from 'react-router-dom'
+import React from 'react'
 import { PROVIDER_CLASSNAME } from '../../CONSTANTS'
-import { TransitionStyles, NavTypes } from "../../CONSTANTS";
-
-function withLocationKey(Component: React.ComponentType<any>) {
-    return (props: any) => {
-        const location = useLocation()
-        return <Component key={location.pathname + location.search} {...props} />
-    }
-}
-
-type NavTypeStyle = TransitionStyles[NavTypes]
+import { TransitionStyles } from "../../CONSTANTS";
+import { withMyRouter, InjectRouterProps } from './Hoc';
 
 type Props = {
     _style: React.CSSProperties,
-    originStyle: NavTypeStyle
-}
+    originStyle: TransitionStyles
+} & InjectRouterProps
 
 // Transporter 将死之际，把 children 的节点放到 Provider 中，调用 Transition 动画，完成卸载的路由页的动画
-
 class Transporter extends React.Component<React.PropsWithChildren<Props>> {
     el = React.createRef<HTMLDivElement>()
     outView: HTMLDivElement | null = null
@@ -71,4 +61,4 @@ function findNearestTRP(el: HTMLElement | null): HTMLElement | null {
             : findNearestTRP(el.parentElement)
 }
 
-export default withLocationKey(Transporter)
+export default withMyRouter({})(Transporter)

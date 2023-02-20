@@ -3,29 +3,23 @@ import React, { createRef } from "react";
 import { Transition } from "react-transition-group";
 import Transporter from "./Transporter";
 import { merge } from 'lodash'
-import { useLocation, useNavigationType, NavigationType, Location } from "react-router-dom";
-import { withMyRouter } from "./Hoc";
+import { Location } from "react-router-dom";
+import { withMyRouter, InjectRouterProps } from "./Hoc";
 // TransitionRoute 在路由进入时 调用 Transition 动画
 
-interface TransitionRouteProps {
+type TransitionRouteProps = {
     styles?: TransitionStyles,
     duration?: number
-}
+} & InjectRouterProps
 
-type WithMyRouter<T> = T & {
-    navType: NavTypes,
-    location: Location
-}
-
-@withMyRouter({ useLocationKey: true })
-class TransitionRoute extends React.Component<WithMyRouter<React.PropsWithChildren<TransitionRouteProps>>> {
+class TransitionRoute extends React.Component<React.PropsWithChildren<TransitionRouteProps>> {
 
     state = {
         inProp: false,
         styles: merge(defaultTransitionStyles, this.props.styles)
     }
 
-    shouldComponentUpdate(nextProps: Readonly<WithMyRouter<TransitionRouteProps>>, nextState: Readonly<{}>, nextContext: any): boolean {
+    shouldComponentUpdate(nextProps: Readonly<TransitionRouteProps>, nextState: Readonly<{}>, nextContext: any): boolean {
         if (nextProps.styles !== this.props.styles) {
             this.setState({
                 styles: merge(defaultTransitionStyles, nextProps.styles)
@@ -59,4 +53,4 @@ class TransitionRoute extends React.Component<WithMyRouter<React.PropsWithChildr
 }
 
 
-export default TransitionRoute
+export default withMyRouter({ useLocationKey: true })(TransitionRoute)

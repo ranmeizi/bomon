@@ -1,9 +1,9 @@
 import { PROVIDER_CLASSNAME, TransitionStyles, NavTypes, States } from '../../CONSTANTS'
-import React, { createRef, useEffect, useRef, useState } from 'react'
+import React, { createRef, PropsWithChildren } from 'react'
 import { Transition, TransitionStatus } from 'react-transition-group'
 import { uniqueId } from 'lodash'
 import EventTarget from '../../utils/EventTarget'
-import { withMyRouter } from './Hoc'
+import { withMyRouter, InjectRouterProps } from './Hoc'
 
 // TransitionProvider
 
@@ -15,8 +15,9 @@ const styles: Record<string, React.CSSProperties> = {
     }
 }
 
-@withMyRouter({})
-class TransitionProvider extends React.Component<any> {
+type Props = {} & InjectRouterProps
+
+class TransitionProvider extends React.Component<PropsWithChildren<Props>> {
 
     el = createRef<HTMLDivElement>()
     id = uniqueId()
@@ -111,4 +112,4 @@ class TransitionProvider extends React.Component<any> {
     }
 }
 
-export default TransitionProvider
+export default withMyRouter({})(TransitionProvider)
