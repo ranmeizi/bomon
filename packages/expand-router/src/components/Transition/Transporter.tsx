@@ -27,7 +27,6 @@ class Transporter extends React.Component<React.PropsWithChildren<Props>> {
     }
 
     componentWillUnmount(): void {
-        console.log('unmount', this.el)
 
         if (!this.outView) {
             return

@@ -84,21 +84,21 @@ importers:
   packages/expand-router:
     specifiers:
       '@bomon/webpack-runner': workspace:^1.0.1
-      '@types/lodash': ^4.14.191
+      '@types/lodash-es': ^4.17.6
       '@types/react': ^18.0.27
       '@types/react-transition-group': ^4.4.5
-      lodash: ^4.17.21
+      lodash-es: ^4.17.21
       react-activation: ^0.12.2
       react-router-dom: ^6.8.1
       react-transition-group: ^4.4.5
       typescript: ^4.9.4
     dependencies:
-      lodash: 4.17.21
+      lodash-es: 4.17.21
       react-activation: 0.12.2
       react-transition-group: 4.4.5
     devDependencies:
       '@bomon/webpack-runner': link:../webpack-runner
-      '@types/lodash': 4.14.191
+      '@types/lodash-es': 4.17.6
       '@types/react': 18.0.27
       '@types/react-transition-group': 4.4.5
       react-router-dom: 6.8.1
@@ -136,6 +136,7 @@ importers:
       rollup-plugin-dts: ^5.1.1
       rollup-plugin-typescript2: ^0.34.1
       style-loader: ^3.3.1
+      terser-webpack-plugin: ^5.3.6
       tslib: ^2.5.0
       typescript: ^4.9.4
       url-loader: ^4.1.1
@@ -159,6 +160,7 @@ importers:
       postcss: 8.4.21
       postcss-loader: 7.0.2_6jdsrmfenkuhhw3gx4zvjlznce
       style-loader: 3.3.1_webpack@5.75.0
+      terser-webpack-plugin: 5.3.6_webpack@5.75.0
       url-loader: 4.1.1_webpack@5.75.0
       webpack: 5.75.0
       webpack-chain: 6.5.1
@@ -2133,6 +2135,12 @@ packages:
   /@types/json-schema/7.0.11:
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==}
     dev: false
+
+  /@types/lodash-es/4.17.6:
+    resolution: {integrity: sha512-R+zTeVUKDdfoRxpAryaQNRKk3105Rrgx2CFRClIgRGaqDTdjsm8h6IYA8ir584W3ePzkZfst5xIgDwYrlh9HLg==}
+    dependencies:
+      '@types/lodash': 4.14.191
+    dev: true
 
   /@types/lodash/4.14.191:
     resolution: {integrity: sha512-BdZ5BCCvho3EIXw6wUCXHe7rS53AIDPLE+JzwgT+OsJk53oBfbSmZZ7CX4VaRoN78N+TJpFi9QPlfIVNmJYWxQ==}
@@ -4479,6 +4487,10 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       p-locate: 4.1.0
+
+  /lodash-es/4.17.21:
+    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
+    dev: false
 
   /lodash.debounce/4.0.8:
     resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==}

@@ -2,6 +2,7 @@ import Config from 'webpack-chain'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin'
 import webpack from 'webpack'
+import TerserPlugin from "terser-webpack-plugin"
 import path from 'path'
 
 const PNPM_LINKED_WORKSPACE = 'node_modules/@bomon/webpack-runner/node_modules'
@@ -20,6 +21,13 @@ export default function (config: Config) {
         config.watch(true)
 
         config.plugin('hmr').use(webpack.HotModuleReplacementPlugin).end()
+    })
+
+    // when prod
+    config.when(process.env.NODE_ENV === 'production', config => {
+        config.optimization.minimize(true)
+        config.optimization.minimizer('terser')
+            .use(TerserPlugin)
     })
 
     /**

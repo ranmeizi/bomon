@@ -26,5 +26,8 @@ runner({
 
         // library
         config.output.libraryTarget('module')
+
+        // 不压缩
+        config.optimization.minimize(false)
     }
 })

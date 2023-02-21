@@ -1,7 +1,7 @@
 import { PROVIDER_CLASSNAME, TransitionStyles, NavTypes, States } from '../../CONSTANTS'
 import React, { createRef, PropsWithChildren } from 'react'
 import { Transition, TransitionStatus } from 'react-transition-group'
-import { uniqueId } from 'lodash'
+import { uniqueId } from 'lodash-es'
 import EventTarget from '../../utils/EventTarget'
 import { withMyRouter, InjectRouterProps } from './Hoc'
 

@@ -1,15 +1,13 @@
-import { TransitionStyles, defaultTransitionStyles, NavTypes, States } from "../../CONSTANTS";
-import React, { createRef } from "react";
+import { TransitionStyles, defaultTransitionStyles, States } from "../../CONSTANTS";
+import React from "react";
 import { Transition } from "react-transition-group";
 import Transporter from "./Transporter";
-import { merge } from 'lodash'
-import { Location } from "react-router-dom";
+import { merge } from 'lodash-es'
 import { withMyRouter, InjectRouterProps } from "./Hoc";
 // TransitionRoute 在路由进入时 调用 Transition 动画
 
 type TransitionRouteProps = {
-    styles?: TransitionStyles,
-    duration?: number
+    styles?: TransitionStyles
 } & InjectRouterProps
 
 class TransitionRoute extends React.Component<React.PropsWithChildren<TransitionRouteProps>> {
