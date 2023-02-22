@@ -2,15 +2,8 @@
   "name": "@bomon/sort",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "scripts": {
-    "build": "rollup -c --bundleConfigAsCjs"
-  },
+  "main": "src/index.js",
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@rollup/plugin-commonjs": "^24.0.1",
-    "rollup": "^3.12.0"
-  }
+  "license": "ISC"
 }

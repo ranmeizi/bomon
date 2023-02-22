@@ -14,6 +14,11 @@
 
 ### 组件
 
+提供了2个功能
+实现路由过渡的 TransitionProvider 和 TransitionProvider
+实现路由缓存的 KRoute 和 AliveScope
+其中节点缓存基本与 [react-activation](https://github.com/CJY0208/react-activation) 一致
+
 #### KRoute
 
 使用```react-activation```封装了一个 refresh 时机的 KeepAlive 组件，他的作用是，在 PUSH 和 REPLACE 时，调用 refresh。

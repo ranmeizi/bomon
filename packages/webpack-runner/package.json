@@ -1,7 +1,7 @@
 {
   "name": "@bomon/webpack-runner",
   "version": "1.0.2",
-  "description": "",
+  "description": "common react webpack config use webpack-chaining, export a runner function and chainConfig",
   "main": "dist/index.js",
   "types": "dist/types.d.ts",
   "files": [
@@ -11,8 +11,11 @@
   "scripts": {
     "build": "rollup -c --bundleConfigAsCjs && cp wr.env.d.ts ./dist/wr.env.d.ts"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "webpack runner",
+    "webpack react"
+  ],
+  "author": "boboan",
   "license": "ISC",
   "dependencies": {
     "@babel/core": "^7.20.12",
