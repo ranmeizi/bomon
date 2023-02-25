@@ -31,7 +31,9 @@ const routes: RouteObject[] = [
                     {
                         path: "/t/recents",
                         element: <TransitionRoute>
-                            <Rectnts />
+                            <KRoute>
+                                <Rectnts />
+                            </KRoute>
                         </TransitionRoute>,
                     },
                 ],

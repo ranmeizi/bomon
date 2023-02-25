@@ -4,6 +4,9 @@
 
 这个模块为了封装路由切换的代码，使小项目或是对过渡动画要求不高的项目直接使用，并不适合所有情况
 
+[view in codesangbox](https://codesandbox.io/p/sandbox/expand-router-ofynwt)
+
+
 ## install
 
 ```npm install @bomon/expand-router```
@@ -50,8 +53,6 @@ import { KRoute } from '@bomon/expand-router'
 自带了一套 translatX 的x轴动画
 
 先定义 transition 窗口，transition 的 view 都会相对窗口定位
-
-[view in codesangbox](https://codesandbox.io/p/sandbox/expand-router-ofynwt)
 
 ```javascript
 import { TransitionProvider } from '@bomon/expand-router'
