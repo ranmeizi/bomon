@@ -1,16 +1,23 @@
-import React, { createRef } from "react";
-import { Outlet, RouteObject, Link, useNavigate, Routes, redirect } from "react-router-dom";
-import TransitionView from "@/TransitionView";
+import React, { useEffect } from "react";
+import { Outlet, RouteObject, Link, useNavigate } from "react-router-dom";
 import { KRoute, TransitionRoute } from "@bomon/expand-router";
-import Nav from "@/components/Nav";
 import TabView from "@/components/TabView";
 import Favorites from "@/views/Favorites";
 import Nearby from "@/views/Nearby";
 import Rectnts from "@/views/Rectnts";
 
+const Redirect = (props: { to: string }) => {
+    const navigate = useNavigate();
+    useEffect(() => {
+        navigate(props.to);
+    }, []);
+    return <Outlet />;
+};
+
 const routes: RouteObject[] = [
     {
         path: "/",
+        element: <Redirect to="/t/recents" />,
         children: [
             {
                 path: "/t",
@@ -30,7 +37,7 @@ const routes: RouteObject[] = [
                     },
                     {
                         path: "/t/recents",
-                        element: <TransitionRoute>
+                        element: <TransitionRoute cloneNode>
                             <KRoute>
                                 <Rectnts />
                             </KRoute>

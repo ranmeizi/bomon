@@ -7,7 +7,8 @@ import { withMyRouter, InjectRouterProps } from "./Hoc";
 // TransitionRoute 在路由进入时 调用 Transition 动画
 
 type TransitionRouteProps = {
-    styles?: TransitionStyles
+    styles?: TransitionStyles,
+    cloneNode?: boolean // 克隆dom节点，当子节点dom操作时在之前克隆，以显示残像，默认关闭的，这样会使路由切换变卡
 } & InjectRouterProps
 
 class TransitionRoute extends React.Component<React.PropsWithChildren<TransitionRouteProps>> {
@@ -35,14 +36,11 @@ class TransitionRoute extends React.Component<React.PropsWithChildren<Transition
 
     render(): React.ReactNode {
         const { inProp, styles } = this.state
-        const { navType, children } = this.props
-        return <Transition in={inProp} timeout={{
-            appear: 0,
-            enter: 0,
-            exit: 0,
-        }}>
+        const { navType, children, cloneNode } = this.props
+        console.log(cloneNode)
+        return <Transition in={inProp} timeout={0}>
             {state => {
-                return <Transporter _style={styles[navType][state as States]} originStyle={styles}>
+                return <Transporter _style={styles[navType][state as States]} cloneNode={!!cloneNode} originStyle={styles}>
                     {children}
                 </Transporter>
             }}
