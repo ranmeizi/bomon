@@ -51,6 +51,8 @@ import { KRoute } from '@bomon/expand-router'
 
 先定义 transition 窗口，transition 的 view 都会相对窗口定位
 
+[view in codesangbox](https://codesandbox.io/p/sandbox/expand-router-ofynwt)
+
 ```javascript
 import { TransitionProvider } from '@bomon/expand-router'
 // TabView

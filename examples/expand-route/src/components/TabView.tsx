@@ -4,7 +4,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import PersonPinIcon from '@mui/icons-material/PersonPin';
 import React from 'react'
 import { useNavigate, useOutlet } from 'react-router-dom'
-import { SwitchOutlet, TransitionProvider } from '@bomon/expand-router'
+import { TransitionProvider } from '@bomon/expand-router'
 
 const Box = styled('div')({
     height: '100vh',
