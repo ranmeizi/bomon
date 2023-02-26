@@ -58,14 +58,14 @@ class Transporter extends React.Component<React.PropsWithChildren<Props>> {
     }
 
     render(): React.ReactNode {
-        return <div ref={this.el} className='transition-item' style={this.props._style}>
+        return <div ref={this.el} className='er-transition' style={this.props._style}>
             {this.props.children}
         </div>
     }
 }
 
 function findOutView(el: HTMLElement): HTMLDivElement {
-    return el.querySelector('.out-view') as HTMLDivElement
+    return el.querySelector('.er-outview') as HTMLDivElement
 }
 
 function findNearestTRP(el: HTMLElement | null): HTMLElement | null {

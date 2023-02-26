@@ -102,7 +102,7 @@ class TransitionProvider extends React.Component<PropsWithChildren<Props>> {
                     return <div
                         ref={this.el}
                         id={this.id}
-                        className='transition-item out-view'
+                        className='er-outview'
                         style={this.getStyle(state)}
                         data-id={this.id}
                     ></div>
