@@ -43,7 +43,6 @@ class TransitionProvider extends React.Component<PropsWithChildren<Props>> {
             return
         }
         if (this.running) {
-            console.log('running')
             // 清除节点
             while (this.el.current.children.length - 1 > 0) {
                 this.el.current.children[0].remove()
@@ -112,4 +111,4 @@ class TransitionProvider extends React.Component<PropsWithChildren<Props>> {
     }
 }
 
-export default withMyRouter({})(TransitionProvider)
+export default withMyRouter()(TransitionProvider)

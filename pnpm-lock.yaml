@@ -10,8 +10,8 @@ importers:
 
   examples/expand-route:
     specifiers:
-      '@bomon/expand-router': workspace:^0.1.0
-      '@bomon/webpack-runner': workspace:^1.0.1
+      '@bomon/expand-router': workspace:*
+      '@bomon/webpack-runner': workspace:*
       '@emotion/react': ^11.10.5
       '@emotion/styled': ^11.10.5
       '@mui/icons-material': ^5.11.0

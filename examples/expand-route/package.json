@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@bomon/expand-router": "workspace:^0.1.0",
+    "@bomon/expand-router": "workspace:*",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/icons-material": "^5.11.0",
@@ -21,7 +21,7 @@
     "react-router-dom": "^6.8.1"
   },
   "devDependencies": {
-    "@bomon/webpack-runner": "workspace:^1.0.1",
+    "@bomon/webpack-runner": "workspace:*",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10"
   }
