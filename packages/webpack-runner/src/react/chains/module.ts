@@ -1,8 +1,9 @@
 import Config from 'webpack-chain'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin'
+import { Options } from '../../type'
 
-export default function (config: Config) {
+export default function (options: Options, config: Config) {
     // tsx
     config.module
         .rule('react')

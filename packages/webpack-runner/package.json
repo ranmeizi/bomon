@@ -1,6 +1,6 @@
 {
   "name": "@bomon/webpack-runner",
-  "version": "1.0.3",
+  "version": "1.1.1",
   "description": "common react webpack config use webpack-chaining, export a runner function and chainConfig",
   "main": "dist/index.js",
   "types": "dist/types.d.ts",
@@ -14,7 +14,8 @@
   },
   "keywords": [
     "webpack runner",
-    "webpack react"
+    "build react",
+    "build extension"
   ],
   "author": "boboan",
   "license": "ISC",

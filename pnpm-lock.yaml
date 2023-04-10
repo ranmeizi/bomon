@@ -35,6 +35,23 @@ importers:
       '@types/react': 18.0.27
       '@types/react-dom': 18.0.10
 
+  examples/extension:
+    specifiers:
+      '@bomon/webpack-runner': workspace:^1.0.3
+      '@types/react': ^18.0.27
+      '@types/react-dom': ^18.0.10
+      react: ^18.2.0
+      react-dom: ^18.2.0
+      typescript: ^4.9.4
+    dependencies:
+      '@bomon/webpack-runner': link:../../packages/webpack-runner
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      typescript: 4.9.4
+    devDependencies:
+      '@types/react': 18.0.27
+      '@types/react-dom': 18.0.10
+
   examples/test-page:
     specifiers:
       '@bomon/dev-publish': workspace:^1.0.0
@@ -6745,7 +6762,6 @@ packages:
     resolution: {integrity: sha512-Uz+dTXYzxXXbsFpM86Wh3dKCxrQqUcVMxwU54orwlJjOpO3ao8L7j5lH+dWfTwgCwIuM9GQ2kvVotzYJMXTBZg==}
     engines: {node: '>=4.2.0'}
     hasBin: true
-    dev: true
 
   /unbox-primitive/1.0.2:
     resolution: {integrity: sha512-61pPlCD9h51VoreyJ0BReideM3MDKMKnh6+V9L08331ipq6Q8OFXZYiqP6n/tbHx4s5I9uRhcye6BrbkizkBDw==}

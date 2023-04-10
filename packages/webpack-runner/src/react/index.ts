@@ -8,8 +8,8 @@ export default function (options: Options) {
 
   config.mode(process.env.NODE_ENV as any || 'production')
 
-  c_base(config)
-  c_module(config)
-  
+  c_base(options, config)
+  c_module(options, config)
+
   return config
 }

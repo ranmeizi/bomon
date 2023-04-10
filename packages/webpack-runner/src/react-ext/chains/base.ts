@@ -3,14 +3,21 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin'
 import webpack from 'webpack'
 import TerserPlugin from "terser-webpack-plugin"
+import { getEntries } from '../utils/io'
 import path from 'path'
+import { Options } from '../../type'
 
 const PNPM_LINKED_WORKSPACE = 'node_modules/@bomon/webpack-runner/node_modules'
 
-export default function (config: Config) {
+export default function (options: Options, config: Config) {
     // 处理入口
+    const entries = getEntries()
+    console.log(entries)
 
-    config.entries
+    for (let prop in entries){
+        config.entry(prop).add(entries[prop])
+    }
+    // config.set('entry', entries)
 
     /**
      * @description resolve 

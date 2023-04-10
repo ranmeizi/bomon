@@ -4,10 +4,11 @@ import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin'
 import webpack from 'webpack'
 import TerserPlugin from "terser-webpack-plugin"
 import path from 'path'
+import { Options } from '../../type'
 
 const PNPM_LINKED_WORKSPACE = 'node_modules/@bomon/webpack-runner/node_modules'
 
-export default function (config: Config) {
+export default function (options: Options, config: Config) {
 
     // when dev
     config.when(process.env.NODE_ENV === 'development', config => {
@@ -25,9 +26,12 @@ export default function (config: Config) {
 
     // when prod
     config.when(process.env.NODE_ENV === 'production', config => {
-        config.optimization.minimize(true)
-        config.optimization.minimizer('terser')
-            .use(TerserPlugin)
+        if (options.minimize) {
+            config.optimization.minimize(true)
+            config.optimization.minimizer('terser')
+                .use(TerserPlugin)
+        }
+
     })
 
     /**

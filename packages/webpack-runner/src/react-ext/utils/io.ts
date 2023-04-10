@@ -43,7 +43,7 @@ export function putEntryTo(entries: Record<string, string>, folder: string, pref
 }
 
 // Input 获取js入口
-export function getEntries() {
+export function getEntries(): Record<string, string> {
     const entries = {}
     putEntryTo(entries, 'scripts')(resolve('scripts'))
     putEntryTo(entries, 'pages')(resolve('pages'))

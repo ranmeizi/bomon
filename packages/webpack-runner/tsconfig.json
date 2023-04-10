@@ -8,5 +8,9 @@
     "strict": true,
     "skipLibCheck": true,
     "declaration": true
-  }
+  },
+  "exclude": [
+    "test/**/*",
+    "dist/**/*"
+  ]
 }
