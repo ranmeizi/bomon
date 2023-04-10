@@ -1,0 +1,32 @@
+{
+    "manifest_version": 2,
+    "name": "zcr",
+    "description": "ceshi",
+    "version": "1.0",
+    "web_accessible_resources": [
+        "inject_scripts/notification.js",
+        "inject_scripts/xhr.js"
+    ],
+    "background": {
+        "page": "background.html"
+    },
+    "browser_action": {
+        "default_icon": "img/m.png",
+        "default_title": "这是一个示例Chrome插件",
+        "default_popup": "popup.html"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "css": [
+                "css/ext_content.css"
+            ],
+            "js": [
+                "content_scripts/inject.js",
+                "content_scripts/store.js"
+            ]
+        }
+    ]
+}

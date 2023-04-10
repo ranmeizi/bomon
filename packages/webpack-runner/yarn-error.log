@@ -1,0 +1,78 @@
+Arguments: 
+  D:\soft\nodejs\node.exe D:\soft\nodejs\node_modules\yarn\bin\yarn.js add jest -D
+
+PATH: 
+  C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;D:\soft\Git\cmd;D:\soft\nvm;C:\Users\Administrator\AppData\Roaming\nvm;D:\soft\nodejs;D:\soft\Microsoft VS Code\bin;D:\soft\python\Scripts\;D:\soft\python\;C:\Users\Administrator\.cargo\bin;C:\Users\Administrator\AppData\Local\pnpm;C:\Users\Administrator\AppData\Local\Microsoft\WindowsApps;D:\soft\Microsoft VS Code\bin;C:\Users\Administrator\AppData\Roaming\nvm;D:\soft\nodejs;D:\soft\msys2\mingw64\bin;
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  16.19.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: ENOENT: no such file or directory, copyfile 'C:\Users\Administrator\AppData\Local\Yarn\Cache\v6\npm-ms-2.1.2-d09d1f357b443f493382a8eb3ccd183872ae6009-integrity\node_modules\ms\index.js' -> 'D:\code\bomon\packages\webpack-runner\node_modules\@babel\core\node_modules\ms\index.js'
+
+npm manifest: 
+  {
+    "name": "@bomon/webpack-runner",
+    "version": "1.0.3",
+    "description": "common react webpack config use webpack-chaining, export a runner function and chainConfig",
+    "main": "dist/index.js",
+    "types": "dist/types.d.ts",
+    "files": [
+      "dist/*"
+    ],
+    "type": "commonjs",
+    "scripts": {
+      "build": "rollup -c --bundleConfigAsCjs && cp wr.env.d.ts ./dist/wr.env.d.ts"
+    },
+    "keywords": [
+      "webpack runner",
+      "webpack react"
+    ],
+    "author": "boboan",
+    "license": "ISC",
+    "dependencies": {
+      "@babel/core": "^7.20.12",
+      "@babel/plugin-proposal-decorators": "^7.20.13",
+      "@babel/preset-env": "^7.20.2",
+      "@babel/preset-react": "^7.18.6",
+      "@babel/preset-typescript": "^7.18.6",
+      "babel-loader": "^9.1.2",
+      "css-loader": "^6.7.3",
+      "css-minimizer-webpack-plugin": "^4.2.2",
+      "friendly-errors-webpack-plugin": "^1.7.0",
+      "html-webpack-plugin": "^5.5.0",
+      "less": "^4.1.3",
+      "less-loader": "^11.1.0",
+      "mini-css-extract-plugin": "^2.7.2",
+      "postcss": "^8.4.21",
+      "postcss-loader": "^7.0.2",
+      "style-loader": "^3.3.1",
+      "terser-webpack-plugin": "^5.3.6",
+      "url-loader": "^4.1.1",
+      "webpack": "^5.75.0",
+      "webpack-chain": "^6.5.1",
+      "webpack-dev-server": "^4.11.1"
+    },
+    "devDependencies": {
+      "@rollup/plugin-commonjs": "^24.0.1",
+      "@types/friendly-errors-webpack-plugin": "^0.1.4",
+      "@types/node": "^18.11.18",
+      "rollup": "^3.12.0",
+      "rollup-plugin-dts": "^5.1.1",
+      "rollup-plugin-typescript2": "^0.34.1",
+      "tslib": "^2.5.0",
+      "typescript": "^4.9.4"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

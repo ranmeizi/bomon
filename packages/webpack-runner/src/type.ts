@@ -1,7 +1,7 @@
 import Config from 'webpack-chain'
 
 export interface Options {
-    type: 'react',
+    type: 'react' | 'react-ext',
     chainWebpack?: (config: Config) => void
 }
 
