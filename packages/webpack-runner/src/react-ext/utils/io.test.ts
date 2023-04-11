@@ -3,6 +3,11 @@ import { isFile, getNameAndExt } from './io'
 import path from 'path'
 
 describe('io test', () => {
+    const memo = process.cwd
+
+    function revert() {
+        process.cwd = memo
+    }
     test('isDirectory', () => {
 
         const path1 = path.resolve(__filename, '../')
