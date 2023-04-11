@@ -84,5 +84,5 @@ runner 会根据文件夹搜索 entries 并完成 output，所以我按照 exten
 webpack 的 image font 资源模块类型
 
 ```ts
-import "@bomon/webpack-runner/dist/wr.env";
+import "@bomon/webpack-runner/wr.env";
 ```

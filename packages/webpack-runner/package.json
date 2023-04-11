@@ -5,11 +5,12 @@
   "main": "dist/index.js",
   "types": "dist/types.d.ts",
   "files": [
-    "dist/*"
+    "dist/*",
+    "wr.env.d.ts"
   ],
   "type": "commonjs",
   "scripts": {
-    "build": "rollup -c --bundleConfigAsCjs && cp wr.env.d.ts ./dist/wr.env.d.ts",
+    "build": "rollup -c --bundleConfigAsCjs",
     "test": "jest"
   },
   "keywords": [
