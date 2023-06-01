@@ -1,6 +1,6 @@
 {
   "name": "gendts",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "a cli to generate ts type from openapi,use openapi-typescript",
   "keywords": [
     "typescript generate",
