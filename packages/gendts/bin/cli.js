@@ -8,23 +8,25 @@ const [, , ...args] = process.argv;
 const HELP = `usage: gendts [command] [options]
 
 commands
+  init                         create config.json
+  help                         display help info
+
+argv
   --help                       display help info
   --version                    display version
-  --init                       create config.json
-
-options
   --type, -t                   (config.type) type of get openapi.json file. "fs" | "http"
   --source, -s                 (config.source) readFile path or request url
   --outputFileName, -o         (config.outputFileName) output file name. default: "./output/type.d.ts"
   --config, -c                 use config.json instead of argv
 `;
 
+const error_msg = (msg) => `somewhere error : ${msg} , please read help info\n\n` + HELP
+
 const argv = parser(args, {
     array: ["header"],
     boolean: [
         "help",
         "version",
-        "init",
         "config"
     ],
     string: ["type", "source", "outputFileName"],
@@ -52,12 +54,12 @@ function init() {
 }
 
 async function main() {
-    if ("help" in argv) {
+    if ("help" in argv || args.indexOf("help") === 0) {
         console.info(HELP)
         process.exit(0);
     }
 
-    if ("init" in argv) {
+    if (args.indexOf("init") === 0) {
         init()
         console.info("gendts.config.json created, use gendts -c ")
         process.exit(0);
@@ -81,7 +83,13 @@ async function main() {
         Object.assign(config, JSON.parse(fs.readFileSync("gendts.config.json")))
     }
 
-    await gen(config)
+    try {
+        await gen(config)
+    } catch (e) {
+        console.error(error_msg(e.message))
+        process.exit(1);
+    }
+
 }
 
 main()

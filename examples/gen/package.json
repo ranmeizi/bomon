@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "thelp": "gendts --help",
-    "tinit": "gendts --init",
+    "thelp": "gendts help",
+    "tinit": "gendts init",
     "toption": "gendts -t fs -s ./input/openapi.json -o ./output/type.d.ts",
     "tconfig": "gendts -c"
   },
