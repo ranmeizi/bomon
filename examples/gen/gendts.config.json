@@ -1,0 +1,5 @@
+{
+  "type":"fs",
+  "source":"./input/openapi.json",
+  "outputFileName":"./output/type.d.ts"
+}
