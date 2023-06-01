@@ -1,0 +1,378 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "bafojo",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "System"
+    },
+    {
+      "name": "System/User"
+    }
+  ],
+  "paths": {
+    "/system/user/create": {
+      "get": {
+        "summary": "未命名接口",
+        "x-apifox-folder": "System/User",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "System/User"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "uname": {
+                    "type": "string",
+                    "title": "用户名",
+                    "description": "用户名"
+                  },
+                  "nickname": {
+                    "type": "string",
+                    "title": "昵称",
+                    "description": "昵称"
+                  },
+                  "sex": {
+                    "type": "string",
+                    "title": "性别",
+                    "description": "1-男 2-女"
+                  },
+                  "mobile": {
+                    "type": "string",
+                    "title": "手机号",
+                    "description": "手机号"
+                  },
+                  "email": {
+                    "type": "string",
+                    "title": "邮箱",
+                    "description": "邮箱"
+                  }
+                },
+                "x-apifox-orders": [
+                  "01H1TZBSYH1GAXG9JJQACHTJ5X"
+                ],
+                "x-apifox-refs": {
+                  "01H1TZBSYH1GAXG9JJQACHTJ5X": {
+                    "$ref": "#/components/schemas/UserCreateParam"
+                  }
+                },
+                "required": [
+                  "uname"
+                ],
+                "x-apifox-ignore-properties": [
+                  "uname",
+                  "nickname",
+                  "sex",
+                  "mobile",
+                  "email"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "number",
+                      "title": "响应码"
+                    },
+                    "message": {
+                      "type": "string",
+                      "title": "提示信息"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "number",
+                          "title": "用户id",
+                          "description": "用户id"
+                        },
+                        "uname": {
+                          "type": "string",
+                          "title": "用户名",
+                          "description": "用户名"
+                        },
+                        "nickname": {
+                          "type": "string",
+                          "title": "昵称",
+                          "description": "昵称"
+                        },
+                        "sex": {
+                          "type": "string",
+                          "title": "性别",
+                          "description": "性别"
+                        },
+                        "mobile": {
+                          "type": "string",
+                          "title": "手机号",
+                          "description": "手机号"
+                        },
+                        "email": {
+                          "type": "string",
+                          "title": "邮箱",
+                          "description": "邮箱"
+                        },
+                        "enabled": {
+                          "type": "string",
+                          "title": "启用状态",
+                          "description": "启用状态"
+                        },
+                        "created_at": {
+                          "type": "string",
+                          "title": "创建时间",
+                          "description": "创建时间"
+                        },
+                        "created_by": {
+                          "type": "string",
+                          "title": "创建人",
+                          "description": "创建人"
+                        },
+                        "updated_at": {
+                          "type": "string",
+                          "title": "更新时间",
+                          "description": "更新时间"
+                        },
+                        "updated_by": {
+                          "type": "string",
+                          "title": "更新人",
+                          "description": "更新人"
+                        }
+                      },
+                      "x-apifox-orders": [
+                        "01H1TZD8JSBB54YSP771X338D8"
+                      ],
+                      "required": [
+                        "id",
+                        "uname",
+                        "nickname",
+                        "sex",
+                        "mobile",
+                        "email",
+                        "enabled",
+                        "created_at",
+                        "created_by",
+                        "updated_at",
+                        "updated_by"
+                      ],
+                      "x-apifox-refs": {
+                        "01H1TZD8JSBB54YSP771X338D8": {
+                          "$ref": "#/components/schemas/UserDTO"
+                        }
+                      },
+                      "x-apifox-ignore-properties": [
+                        "id",
+                        "uname",
+                        "nickname",
+                        "sex",
+                        "mobile",
+                        "email",
+                        "enabled",
+                        "created_at",
+                        "created_by",
+                        "updated_at",
+                        "updated_by"
+                      ]
+                    }
+                  },
+                  "x-apifox-orders": [
+                    "01H1TZCA7XH2ZXRY2BM0DZP1QK",
+                    "data"
+                  ],
+                  "required": [
+                    "data",
+                    "code",
+                    "message"
+                  ],
+                  "x-apifox-refs": {
+                    "01H1TZCA7XH2ZXRY2BM0DZP1QK": {
+                      "$ref": "#/components/schemas/ComonRes"
+                    }
+                  },
+                  "x-apifox-ignore-properties": [
+                    "code",
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://apifox.com/web/project/2815631/apis/api-85965398-run"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ComonRes": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "title": "响应码"
+          },
+          "message": {
+            "type": "string",
+            "title": "提示信息"
+          }
+        },
+        "x-apifox-orders": [
+          "code",
+          "message"
+        ],
+        "required": [
+          "message",
+          "code"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": ""
+      },
+      "UserDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "title": "用户id",
+            "description": "用户id"
+          },
+          "uname": {
+            "type": "string",
+            "title": "用户名",
+            "description": "用户名"
+          },
+          "nickname": {
+            "type": "string",
+            "title": "昵称",
+            "description": "昵称"
+          },
+          "sex": {
+            "type": "string",
+            "title": "性别",
+            "description": "性别"
+          },
+          "mobile": {
+            "type": "string",
+            "title": "手机号",
+            "description": "手机号"
+          },
+          "email": {
+            "type": "string",
+            "title": "邮箱",
+            "description": "邮箱"
+          },
+          "enabled": {
+            "type": "string",
+            "title": "启用状态",
+            "description": "启用状态"
+          },
+          "created_at": {
+            "type": "string",
+            "title": "创建时间",
+            "description": "创建时间"
+          },
+          "created_by": {
+            "type": "string",
+            "title": "创建人",
+            "description": "创建人"
+          },
+          "updated_at": {
+            "type": "string",
+            "title": "更新时间",
+            "description": "更新时间"
+          },
+          "updated_by": {
+            "type": "string",
+            "title": "更新人",
+            "description": "更新人"
+          }
+        },
+        "x-apifox-orders": [
+          "id",
+          "uname",
+          "nickname",
+          "sex",
+          "mobile",
+          "email",
+          "enabled",
+          "created_at",
+          "created_by",
+          "updated_at",
+          "updated_by"
+        ],
+        "required": [
+          "id",
+          "uname",
+          "nickname",
+          "sex",
+          "mobile",
+          "email",
+          "enabled",
+          "created_at",
+          "created_by",
+          "updated_at",
+          "updated_by"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": "System/User"
+      },
+      "UserCreateParam": {
+        "type": "object",
+        "properties": {
+          "uname": {
+            "type": "string",
+            "title": "用户名",
+            "description": "用户名"
+          },
+          "nickname": {
+            "type": "string",
+            "title": "昵称",
+            "description": "昵称"
+          },
+          "sex": {
+            "type": "string",
+            "title": "性别",
+            "description": "1-男 2-女"
+          },
+          "mobile": {
+            "type": "string",
+            "title": "手机号",
+            "description": "手机号"
+          },
+          "email": {
+            "type": "string",
+            "title": "邮箱",
+            "description": "邮箱"
+          }
+        },
+        "x-apifox-orders": [
+          "uname",
+          "nickname",
+          "sex",
+          "mobile",
+          "email"
+        ],
+        "required": [
+          "uname"
+        ],
+        "x-apifox-ignore-properties": [],
+        "x-apifox-folder": "System/User"
+      }
+    }
+  },
+  "servers": []
+}
