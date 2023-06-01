@@ -4,7 +4,7 @@ a cli to generate ts type from openapi,use openapi-typescript
 
 ## install
 
-``` npm install openapi-schema2type -g ```
+``` npm install gendts -g ```
 
 ## usage
 
