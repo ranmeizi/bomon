@@ -1,18 +1,30 @@
 {
   "name": "gendts",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "a cli to generate ts type from openapi,use openapi-typescript",
+  "keywords": [
+    "typescript generate",
+    "type generate",
+    "openapi",
+    "swagger",
+    "dts"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ranmeizi/bomon",
+    "directory": "packages/gendts"
+  },
+  "homepage": "https://github.com/ranmeizi/bomon/tree/main/packages/gendts",
   "main": "src/index.js",
   "type": "module",
   "files": [
-    "src/**",
-    "bin/*"
+    "src",
+    "bin"
   ],
   "scripts": {
     "test": "NODE_OPTIONS=--experimental-vm-modules jest"
   },
-  "keywords": [],
-  "author": "",
+  "author": "boboan",
   "license": "ISC",
   "dependencies": {
     "openapi-typescript": "^6.2.6",

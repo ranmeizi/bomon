@@ -1,4 +1,4 @@
-# openapi-schema2type
+# gendts
 
 a cli to generate ts type from openapi,use openapi-typescript
 
