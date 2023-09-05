@@ -1,11 +1,11 @@
-import { PROVIDER_CLASSNAME, TransitionStyles, NavTypes, States } from '../../CONSTANTS'
+import { CLASS_MAP, NavTypes, States } from '../../CONSTANTS'
 import React, { createRef, PropsWithChildren } from 'react'
-import { Transition, TransitionStatus } from 'react-transition-group'
+import { Transition } from 'react-transition-group'
 import { uniqueId } from 'lodash-es'
 import EventTarget from '../../utils/EventTarget'
 import { withMyRouter, InjectRouterProps } from './Hoc'
 
-// TransitionProvider
+// Transition
 
 const styles: Record<string, React.CSSProperties> = {
     root: {
@@ -15,9 +15,11 @@ const styles: Record<string, React.CSSProperties> = {
     }
 }
 
-type Props = {} & InjectRouterProps
+type Props = {
+    className?: string
+} & InjectRouterProps
 
-class TransitionProvider extends React.Component<PropsWithChildren<Props>> {
+class TransitionGroup extends React.Component<PropsWithChildren<Props>> {
 
     el = createRef<HTMLDivElement>()
     id = uniqueId()
@@ -27,7 +29,6 @@ class TransitionProvider extends React.Component<PropsWithChildren<Props>> {
         in: true,
         exit: false,
         appear: false,
-        viewStyle: {},
     }
 
     componentDidMount(): void {
@@ -38,7 +39,7 @@ class TransitionProvider extends React.Component<PropsWithChildren<Props>> {
         EventTarget.un('transport-in', this.transportHandler)
     }
 
-    transportHandler = ({ id, style }: any) => {
+    transportHandler = ({ id }: any) => {
         if (id !== this.id || !this.el.current) {
             return
         }
@@ -54,11 +55,7 @@ class TransitionProvider extends React.Component<PropsWithChildren<Props>> {
             })
         }
 
-        this.setState({
-            viewStyle: style
-        }, () => {
-            this.setState({ in: false })
-        })
+        this.setState({ in: false })
 
         this.running = true
 
@@ -80,20 +77,15 @@ class TransitionProvider extends React.Component<PropsWithChildren<Props>> {
         this.el.current.removeEventListener('transitionend', this.transitionEndHandler)
     }
 
-    getStyle(state: TransitionStatus): React.CSSProperties {
+    getClassName(state: string): string {
         const { navType } = this.props
-        const { viewStyle } = this.state
-        const style = (viewStyle as TransitionStyles)?.[navType as NavTypes]?.[state as States] || {}
-        return {
-            ...style,
-            transition: state === 'exited' ? style.transition : 'none'
-        } || {}
+        return CLASS_MAP[navType as NavTypes][state as States]
     }
 
     render(): React.ReactNode {
         const { children } = this.props
         const { in: _in } = this.state
-        return <div style={styles.root} className={PROVIDER_CLASSNAME}>
+        return <div style={styles.root} className='er-transition-group'>
             {children}
             {/* Transiton Dom */}
             <Transition in={_in} timeout={0}>
@@ -101,8 +93,7 @@ class TransitionProvider extends React.Component<PropsWithChildren<Props>> {
                     return <div
                         ref={this.el}
                         id={this.id}
-                        className='er-outview'
-                        style={this.getStyle(state)}
+                        className={`er-outview ${this.getClassName(state)}`}
                         data-id={this.id}
                     ></div>
                 }}
@@ -111,4 +102,4 @@ class TransitionProvider extends React.Component<PropsWithChildren<Props>> {
     }
 }
 
-export default withMyRouter()(TransitionProvider)
+export default withMyRouter()(TransitionGroup)

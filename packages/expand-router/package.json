@@ -1,6 +1,6 @@
 {
   "name": "@bomon/expand-router",
-  "version": "0.2.1",
+  "version": "1.0.0",
   "description": "react-router6 with transition and node cache",
   "main": "src/index.tsx",
   "types": "dist/index.d.ts",

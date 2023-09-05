@@ -18,12 +18,12 @@
 
 ### 组件
 
-#### TransitionProvider
+#### TransitionGroup
 
-TransitionProvider 用来实现离场动画，作为上层节点接收 TransitionRoute 传递的残像节点
+TransitionGroup 用来实现离场动画，作为上层节点接收 TransitionRoute 传递的残像节点
 
 ```javascript
-<TransitionProvider>
+<TransitionGroup>
    <RouterProvider router={createBrowserRouter([{
     path:'/abc',
     element:<TransitionRoute>
@@ -31,45 +31,18 @@ TransitionProvider 用来实现离场动画，作为上层节点接收 Transitio
     </TransitionRoute>
    }])}>
    </RouterProvider>
-</TransitionProvider>
+</TransitionGroup>
 ```
 
 #### TransitionRoute
 
-TransitionRoute 用来实现进场动画，并且会在路由切换组件销毁时，把子节点转移到 TransitionProvider 中，TransitionProvider 的离开动画中就会有上一个页面的残像。
+TransitionRoute 用来实现进场动画，并且会在路由切换组件销毁时，把子节点转移到 TransitionGroup 中，TransitionGroup 的离开动画中就会有上一个页面的残像。
 
 
 |  参数   | 说明  | 类型 | 默认值 |
 |  ----  | ----  | ----  | ----  |
-| styles  | 各个状态的 style | TransitionStyles(见下方代码块) | defaultTransitionStyles(见下方代码块) |
 | cloneNode  | 为了能正确显示路由残像，在子节点会移动dom时使用 | boolean | false
 
-```ts
-export type NavTypes = 'PUSH' | 'REPLACE' | 'POP'
-export type States = 'entering' | 'entered' | 'exiting' | 'exited'
-
-export type TransitionStyles = Record<NavTypes, Record<States, React.CSSProperties>>
-export const defaultTransitionStyles: TransitionStyles = {
-    PUSH: {
-        entering: { opacity: 1, transform: 'translateX(100%)' },
-        entered: { opacity: 1, transform: 'translateX(0)', transition: '300ms' },
-        exiting: { opacity: 1, transform: 'translateX(0)' },
-        exited: { opacity: 1, transform: 'translateX(-100%)', transition: '300ms' },
-    },
-    REPLACE: {
-        entering: { opacity: 1, transform: 'translateX(100%)' },
-        entered: { opacity: 1, transform: 'translateX(0)', transition: '300ms' },
-        exiting: { opacity: 1, transform: 'translateX(0)' },
-        exited: { opacity: 1, transform: 'translateX(-100%)', transition: '300ms' },
-    },
-    POP: {
-        entering: { opacity: 1, transform: 'translateX(-100%)' },
-        entered: { opacity: 1, transform: 'translateX(0)', transition: '300ms' },
-        exiting: { opacity: 1, transform: 'translateX(0)' },
-        exited: { opacity: 1, transform: 'translateX(100%)', transition: '300ms' },
-    }
-};
-```
 
 关于**cloneNode**  
 在 TransitionRoute 的子节点中如果有像 react-activation 这种操作 dom 的动作，TransitionRoute 无法用 appendChild 的方式形成出场的残像节点，需要 cloneNode 完整复制 dom 节点。这样做会使路由切换时的 dom 节点瞬间增加，在大型应用中会卡顿，慎用。
@@ -87,3 +60,9 @@ TransitionProvider 和 TransitionRoute 中定义了 2 个元素，可以看情�
 |  ----  | ----  |
 | .er-outview  | 播放出场动画的元素 |
 | .er-transition  | 播放入场动画元素 |
+
+
+### 示例
+
+使用@bomon/expand-router的缓存过渡的示例
+[view in codesandbox](https://codesandbox.io/p/sandbox/expand-router-ofynwt)

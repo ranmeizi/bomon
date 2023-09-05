@@ -4,7 +4,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import PersonPinIcon from '@mui/icons-material/PersonPin';
 import React from 'react'
 import { useNavigate, useOutlet } from 'react-router-dom'
-import { TransitionProvider } from '@bomon/expand-router'
+import { TransitionGroup } from '@bomon/expand-router'
 
 const Box = styled('div')({
     height: '100vh',
@@ -48,9 +48,9 @@ export default function () {
     return <Box style={{display:'flex',paddingBottom:'72px'}}>
         {/* 路由窗口 */}
         <div style={{flex:1}}>
-            <TransitionProvider>
+            <TransitionGroup>
                 {outlet}
-            </TransitionProvider>
+            </TransitionGroup>
         </div>
         {/* tab */}
         <Tabs className='bottom-tab' value={value} onChange={handleChange} aria-label="icon label tabs example">

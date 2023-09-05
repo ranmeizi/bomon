@@ -1,7 +1,8 @@
 import {
   TransitionStyles,
-  defaultTransitionStyles,
   States,
+  CLASS_MAP,
+  NavTypes
 } from "../../CONSTANTS";
 import React from "react";
 import { Transition } from "react-transition-group";
@@ -33,18 +34,18 @@ class TransitionRoute extends React.PureComponent<
 
   state = {
     inProp: false,
-    styles: merge(defaultTransitionStyles, this.props.styles),
   };
-
-  get styles() {
-    return merge(defaultTransitionStyles, this.state.styles);
-  }
 
   componentDidMount(): void {
     this.setState({
       inProp: true,
     });
   }
+
+  getClassName(state: string): string {
+    const { navType } = this.props
+    return CLASS_MAP[navType as NavTypes][state as States]
+}
 
   render(): React.ReactNode {
     const { inProp } = this.state;
@@ -55,9 +56,8 @@ class TransitionRoute extends React.PureComponent<
         {(state) => {
           return (
             <Transporter
-              style={this.styles[navType][state as States]}
+             className={this.getClassName(state)}     
               cloneNode={!!cloneNode}
-              originStyle={this.styles}
             >
               {children}
             </Transporter>

@@ -1,13 +1,10 @@
 import EventTarget from '../../utils/EventTarget';
 import React from 'react'
-import { PROVIDER_CLASSNAME } from '../../CONSTANTS'
-import { TransitionStyles } from "../../CONSTANTS";
 import { withMyRouter, InjectRouterProps } from './Hoc';
 
 type Props = {
+    className: string
     cloneNode: boolean
-    style: React.CSSProperties,
-    originStyle: TransitionStyles
 } & InjectRouterProps
 
 // Transporter 将死之际，把 children 的节点放到 Provider 中，调用 Transition 动画，完成卸载的路由页的动画
@@ -46,12 +43,11 @@ class Transporter extends React.Component<React.PropsWithChildren<Props>> {
         // 触发事件
         EventTarget.emit('transport-in', {
             id: this.nearestId,
-            style: this.props.originStyle
         })
     }
 
     render(): React.ReactNode {
-        return <div ref={this.el} className='er-transition' style={this.props.style}>
+        return <div ref={this.el} className={`er-transition ${this.props.className ?? ''}`}>
             {this.props.children}
         </div>
     }
@@ -64,7 +60,7 @@ function findOutView(el: HTMLElement): HTMLDivElement {
 function findNearestTRP(el: HTMLElement | null): HTMLElement | null {
     return el === null
         ? null
-        : el.className === PROVIDER_CLASSNAME
+        : el.className === 'er-transition-group'
             ? el
             : findNearestTRP(el.parentElement)
 }
