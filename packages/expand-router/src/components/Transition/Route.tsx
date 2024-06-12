@@ -45,7 +45,7 @@ class TransitionRoute extends React.PureComponent<
   getClassName(state: string): string {
     const { navType } = this.props
     return CLASS_MAP[navType as NavTypes][state as States]
-}
+  }
 
   render(): React.ReactNode {
     const { inProp } = this.state;
@@ -56,7 +56,7 @@ class TransitionRoute extends React.PureComponent<
         {(state) => {
           return (
             <Transporter
-             className={this.getClassName(state)}     
+              className={this.getClassName(state)}
               cloneNode={!!cloneNode}
             >
               {children}

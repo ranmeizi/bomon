@@ -9,6 +9,7 @@ interface Connection {
     host: string,
     port: number,
     username: string,
-    password: string,
+    password?: string,
+    privateKey?: string,
     path: string
 }

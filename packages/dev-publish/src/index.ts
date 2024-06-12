@@ -2,7 +2,7 @@ import { Options } from './type'
 import { Client } from 'ssh2'
 import archiver from 'archiver'
 // @ts-ignore
-import client from 'scp2'
+import scp from 'scp2'
 import path from 'path'
 import fs from 'fs'
 
@@ -56,13 +56,16 @@ async function runZip(options: Options): Promise<void> {
 
 async function runScp(options: Options): Promise<void> {
     return new Promise((resolve, reject) => {
-        client.scp(path.resolve(process.cwd(), `${fileName}.zip`), {
+        var client = new scp.Client({
             host: options.connection.host,
             port: options.connection.port,
             username: options.connection.username,
             password: options.connection.password,
-            path: options.connection.path
-        }, function (err: any) {
+            path: options.connection.path,
+            privateKey: options.connection.privateKey
+        });
+
+        client.upload(path.resolve(process.cwd(), `${fileName}.zip`),options.connection.path, function (err: any) {
             // 删除文件
             fs.unlinkSync(path.resolve(process.cwd(), `${fileName}.zip`))
             if (err) {
